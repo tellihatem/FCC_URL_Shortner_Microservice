@@ -3,14 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
-//const { MongoClient } = require('mongodb')
 const dns = require('dns')
 const {URL} = require('url')
 
-//const client = new MongoClient ("mongodb+srv://hatemtelli:Nogameno01@fcc.ln6e3xc.mongodb.net/?retryWrites=true&w=majority&appName=FCC")
-
-//const db = client.db("shorturls")
-//const urls = db.collection("urls")
 
 // Basic Configuration
 const port = process.env.PORT || 3000;
@@ -23,9 +18,9 @@ app.use('/public', express.static(`${process.cwd()}/public`));
 app.get('/', function(req, res) {
   res.sendFile(process.cwd() + '/views/index.html');
 });
-
+//setup my secret variable (url)
 const MONGOURL = process.env.DB_URL;
-
+//connect to database
 mongoose.connect(MONGOURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Database connected successfully.");
